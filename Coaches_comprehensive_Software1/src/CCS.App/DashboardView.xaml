@@ -1,0 +1,43 @@
+<UserControl x:Class="CCS.App.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             FlowDirection="RightToLeft"
+             Background="#F5F6FA">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="داشبورد مدیریتی" FontSize="24" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,20"/>
+        <WrapPanel Grid.Row="1">
+            <Border Width="250" Height="120" Background="White" CornerRadius="8" Margin="0,0,15,15" Padding="15">
+                <Border.Effect>
+                    <DropShadowEffect Color="Gray" Opacity="0.1" BlurRadius="10" ShadowDepth="2"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="کل مربیان" FontSize="14" Foreground="#7F8C8D"/>
+                    <TextBlock x:Name="TotalCoachesText" Text="0" FontSize="32" FontWeight="Bold" Foreground="#1F6FEB" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Border>
+            <Border Width="250" Height="120" Background="White" CornerRadius="8" Margin="0,0,15,15" Padding="15">
+                <Border.Effect>
+                    <DropShadowEffect Color="Gray" Opacity="0.1" BlurRadius="10" ShadowDepth="2"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="کل دوره‌های مربیگری" FontSize="14" Foreground="#7F8C8D"/>
+                    <TextBlock x:Name="TotalCoursesText" Text="0" FontSize="32" FontWeight="Bold" Foreground="#27AE60" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Border>
+            <Border Width="250" Height="120" Background="White" CornerRadius="8" Margin="0,0,15,15" Padding="15">
+                <Border.Effect>
+                    <DropShadowEffect Color="Gray" Opacity="0.1" BlurRadius="10" ShadowDepth="2"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="کل پرداخت‌های ثبت شده" FontSize="14" Foreground="#7F8C8D"/>
+                    <TextBlock x:Name="TotalPaymentsText" Text="0" FontSize="32" FontWeight="Bold" Foreground="#E67E22" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Border>
+        </WrapPanel>
+    </Grid>
+</UserControl>

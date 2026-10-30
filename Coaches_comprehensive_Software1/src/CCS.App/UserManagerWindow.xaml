@@ -1,0 +1,72 @@
+<Window x:Class="CCS.App.UserManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        Title="مدیریت کاربران" Height="500" Width="700" WindowStartupLocation="CenterOwner" WindowStyle="None" ResizeMode="CanResize" FlowDirection="RightToLeft" StateChanged="Window_StateChanged">
+    <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome CaptionHeight="0" ResizeBorderThickness="6" GlassFrameThickness="0" UseAeroCaptionButtons="False"/>
+    </shell:WindowChrome.WindowChrome>
+    <Border BorderBrush="#D0D3DC" BorderThickness="1" Background="#F5F6FA">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="#FFFFFF" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown" FlowDirection="LeftToRight">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                    <Image Source="icon.png" Width="20" Height="20" Margin="0,0,5,0"/>
+                    <TextBlock Text="مدیریت کاربران" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#2C3E50"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button Content="—" Width="40" Height="40" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="Minimize_Click"/>
+                    <Button x:Name="MaximizeBtn" Content="□" Width="40" Height="40" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="Maximize_Click"/>
+                    <Button Content="×" Width="40" Height="40" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="Close_Click"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" Margin="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <WrapPanel Grid.Row="0" Margin="0,0,0,10">
+                    <StackPanel Margin="4" Width="150">
+                        <TextBlock Text="نام کاربری" FontSize="12"/>
+                        <TextBox x:Name="UsernameBox" Height="30" Margin="0,4,0,0" FlowDirection="LeftToRight"/>
+                    </StackPanel>
+                    <StackPanel Margin="4" Width="150">
+                        <TextBlock Text="رمز عبور" FontSize="12"/>
+                        <PasswordBox x:Name="PasswordBox" Height="30" Margin="0,4,0,0" FlowDirection="LeftToRight"/>
+                    </StackPanel>
+                    <StackPanel Margin="4" Width="150">
+                        <TextBlock Text="نقش" FontSize="12"/>
+                        <ComboBox x:Name="RoleCombo" Height="30" Margin="0,4,0,0">
+                            <ComboBoxItem Content="دسترسی کامل (Manager)" Tag="Manager"/>
+                            <ComboBoxItem Content="فقط ثبت نام (Registrar)" Tag="Registrar"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <Button Content="افزودن کاربر" Height="30" Width="100" Margin="4,20,0,0" Background="#1F6FEB" Foreground="White" BorderThickness="0" Cursor="Hand" Click="AddUser_Click"/>
+                </WrapPanel>
+                <DataGrid Grid.Row="1" x:Name="UsersGrid" AutoGenerateColumns="False" IsReadOnly="True" RowHeight="35" Background="White" BorderBrush="#D0D3DC" BorderThickness="1">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="نام کاربری" Binding="{Binding Username}" Width="*"/>
+                        <DataGridTextColumn Header="نقش" Binding="{Binding Role}" Width="*"/>
+                        <DataGridTemplateColumn Header="عملیات" Width="150">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="حذف" Width="60" Height="24" Background="#E81123" Foreground="White" BorderThickness="0" Cursor="Hand" Click="DeleteUser_Click" Margin="2"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

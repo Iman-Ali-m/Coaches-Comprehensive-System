@@ -1,0 +1,110 @@
+<Window x:Class="CCS.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        Title="سامانه جامع مربیان" Height="800" Width="1024" MinHeight="600" MinWidth="800"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="CanResize" StateChanged="Window_StateChanged">
+    <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome CaptionHeight="0" ResizeBorderThickness="6" GlassFrameThickness="0" UseAeroCaptionButtons="False"/>
+    </shell:WindowChrome.WindowChrome>
+    <Window.Background>
+        <ImageBrush ImageSource="bg.png"/>
+    </Window.Background>
+    <Window.Resources>
+        <Style x:Key="SideButton" TargetType="Button">
+            <Setter Property="Background" Value="#AA2C3E50"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Margin" Value="10,2,10,2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="Padding" Value="15,0,15,0"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bg" Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bg" Property="Background" Value="#DD34495E"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Bg" Property="Background" Value="#FF1ABC9C"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Border BorderBrush="#D0D3DC" BorderThickness="1" Background="#E5F5F6FA">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="#FFFFFF" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" FlowDirection="RightToLeft">
+                    <Button Content="×" Width="45" Height="40" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="CloseButton_Click"/>
+                    <Button x:Name="MaximizeButton" Content="□" Width="45" Height="40" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="MaximizeButton_Click"/>
+                    <Button Content="—" Width="45" Height="40" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="MinimizeButton_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,10,0" FlowDirection="LeftToRight">
+                    <Image Source="icon.png" Width="24" Height="24" Margin="0,0,8,0"/>
+                    <TextBlock Text="سامانه جامع مربیان (Coaches comprehensive system (ccs))" Foreground="#2C3E50" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Background="#DD1A252F" Padding="0,20,0,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+                            <StackPanel>
+                                <Button x:Name="BtnManageUsers" Content="مدیریت کاربران" Style="{StaticResource SideButton}" Click="ManageUsersButton_Click"/>
+                                <Button x:Name="BtnRegister" Content="ثبت نام مربی" Style="{StaticResource SideButton}" Click="RegisterCoachButton_Click"/>
+                                <Button x:Name="BtnSearch" Content="جستجو، ویرایش و حذف" Style="{StaticResource SideButton}" Click="SearchCoachButton_Click"/>
+                                <Button x:Name="BtnPayments" Content="مدیریت پرداخت‌ها" Style="{StaticResource SideButton}" Click="PaymentManagerButton_Click"/>
+                                <Button x:Name="BtnFields" Content="مدیریت ویژگی‌های پویا" Style="{StaticResource SideButton}" Click="ManageFieldsButton_Click"/>
+                                <Button x:Name="BtnZip" Content="خروجی مدارک (ZIP)" Style="{StaticResource SideButton}" Click="ExportZipButton_Click"/>
+                                <Button x:Name="BtnExpPay" Content="خروجی پرداخت‌ها" Style="{StaticResource SideButton}" Click="ExportPaymentsButton_Click"/>
+                                <Button x:Name="BtnExpResume" Content="خروجی رزومه" Style="{StaticResource SideButton}" Click="ExportResumeButton_Click"/>
+                                <Button x:Name="BtnExpCourse" Content="خروجی دوره‌های مربیگری" Style="{StaticResource SideButton}" Click="ExportCoursesButton_Click"/>
+                                <Button x:Name="BtnBackup" Content="پشتیبان‌گیری کامل" Style="{StaticResource SideButton}" Click="BackupButton_Click"/>
+                                <Button x:Name="BtnRestore" Content="بازگردانی پشتیبان" Style="{StaticResource SideButton}" Click="RestoreButton_Click"/>
+                                <Button x:Name="BtnSettings" Content="تنظیمات سامانه" Style="{StaticResource SideButton}" Click="SettingsButton_Click"/>
+                                <Button Content="تغییر مشخصات من" Style="{StaticResource SideButton}" Click="ChangeCredentialsButton_Click"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                        <StackPanel Grid.Row="1" Margin="0,0,0,10">
+                            <Button Content="خروج از حساب" Style="{StaticResource SideButton}" Background="#AAE81123" Click="LogoutButton_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <ContentControl Grid.Column="1" x:Name="MainContent"/>
+            </Grid>
+            <Border Grid.Row="2" Background="#FFFFFF" BorderBrush="#D0D3DC" BorderThickness="0,1,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="کل مربیان: " FontWeight="SemiBold" Foreground="#2C3E50"/>
+                    <TextBlock x:Name="FooterTotal" Foreground="#1F6FEB" FontWeight="Bold" Margin="0,0,20,0"/>
+                    <TextBlock x:Name="FooterDetails" Foreground="#7F8C8D" FontSize="12"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,63 @@
+<Window x:Class="CCS.App.DocumentManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        WindowStyle="None"
+        Title="مدیریت فایل‌های آپلود شده"
+        Height="600"
+        Width="900"
+        WindowStartupLocation="CenterOwner"
+        FlowDirection="RightToLeft"
+        Background="#F5F6FA">
+    <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome CaptionHeight="0" ResizeBorderThickness="6" GlassFrameThickness="0" UseAeroCaptionButtons="False"/>
+    </shell:WindowChrome.WindowChrome>
+    <Border BorderBrush="#D0D3DC" BorderThickness="1" Background="#F5F6FA">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="#FFFFFF" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                    <Image Source="icon.png" Width="24" Height="24" Margin="0,0,8,0"/>
+                    <TextBlock Text="مدیریت فایل‌های آپلود شده" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#2C3E50"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Button Content="—" Width="40" Height="40" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="Minimize_Click"/>
+                    <Button x:Name="MaximizeBtn" Content="□" Width="40" Height="40" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="Maximize_Click"/>
+                    <Button Content="×" Width="40" Height="40" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="Close_Click"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" Margin="16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="لیست تمام فایل‌های آپلود شده برای این مربی" FontSize="16" FontWeight="SemiBold" Foreground="#1F6FEB" Margin="0,0,0,10"/>
+                <DataGrid Grid.Row="1" x:Name="DocumentsGrid" AutoGenerateColumns="False" IsReadOnly="True" RowHeight="35" Background="White" BorderBrush="#D0D3DC" BorderThickness="1">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="نوع مدرک" Binding="{Binding CategoryPersian}" Width="*"/>
+                        <DataGridTextColumn Header="نام اصلی فایل" Binding="{Binding OriginalFileName}" Width="*"/>
+                        <DataGridTextColumn Header="تاریخ آپلود" Binding="{Binding UploadedAt}" Width="*"/>
+                        <DataGridTemplateColumn Header="عملیات" Width="180">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button Content="مشاهده" Width="70" Height="26" Background="#1F6FEB" Foreground="White" BorderThickness="0" Cursor="Hand" Click="OpenButton_Click" Margin="2"/>
+                                        <Button Content="حذف" Width="70" Height="26" Background="#E81123" Foreground="White" BorderThickness="0" Cursor="Hand" Click="DeleteButton_Click" Margin="2"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

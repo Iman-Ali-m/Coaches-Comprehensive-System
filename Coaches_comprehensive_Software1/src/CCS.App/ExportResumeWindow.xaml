@@ -1,0 +1,121 @@
+<Window x:Class="CCS.App.ExportResumeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        WindowStyle="None"
+        Title="خروجی رزومه حرفه‌ای"
+        Height="600"
+        Width="950"
+        WindowStartupLocation="CenterOwner"
+        FlowDirection="RightToLeft"
+        Background="#F5F6FA">
+    <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome CaptionHeight="0" ResizeBorderThickness="6" GlassFrameThickness="0" UseAeroCaptionButtons="False"/>
+    </shell:WindowChrome.WindowChrome>
+    <Border BorderBrush="#D0D3DC" BorderThickness="1" Background="#F5F6FA">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="#FFFFFF" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown" FlowDirection="LeftToRight">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                    <Image Source="icon.png" Width="24" Height="24" Margin="0,0,8,0"/>
+                    <TextBlock Text="خروجی رزومه حرفه‌ای" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#2C3E50"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button Content="—" Width="40" Height="40" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="Minimize_Click"/>
+                    <Button x:Name="MaximizeBtn" Content="□" Width="40" Height="40" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="Maximize_Click"/>
+                    <Button Content="×" Width="40" Height="40" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="Close_Click"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" Margin="16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                    <TextBlock Text="حالت خروجی" FontSize="14" FontWeight="SemiBold" Foreground="#2C3E50" Margin="0,0,0,6"/>
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton x:Name="SingleModeRadio" Content="یک نفر" GroupName="Mode" IsChecked="True" Margin="0,0,20,0" VerticalContentAlignment="Center" Checked="ModeRadio_Checked"/>
+                        <RadioButton x:Name="GroupModeRadio" Content="گروهی (بر اساس نوع پرونده)" GroupName="Mode" Margin="0,0,20,0" VerticalContentAlignment="Center" Checked="ModeRadio_Checked"/>
+                        <RadioButton x:Name="AllModeRadio" Content="همه" GroupName="Mode" VerticalContentAlignment="Center" Checked="ModeRadio_Checked"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Margin="0,0,0,10">
+                    <TextBlock Text="فرمت خروجی" FontSize="14" FontWeight="SemiBold" Foreground="#2C3E50" Margin="0,0,0,6"/>
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton x:Name="ExcelRadio" Content="اکسل (Excel)" GroupName="Format" IsChecked="True" Margin="0,0,20,0" VerticalContentAlignment="Center"/>
+                        <RadioButton x:Name="PdfRadio" Content="پی‌دی‌اف (PDF)" GroupName="Format" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" x:Name="SinglePanel" Margin="0,0,0,10">
+                    <TextBlock Text="انتخاب یک نفر" FontSize="14" FontWeight="SemiBold" Foreground="#2C3E50" Margin="0,0,0,6"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Margin="4">
+                            <TextBlock Text="نام" FontSize="12" Foreground="#2C3E50"/>
+                            <TextBox x:Name="FirstNameBox" Height="30" Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="4">
+                            <TextBlock Text="نام خانوادگی" FontSize="12" Foreground="#2C3E50"/>
+                            <TextBox x:Name="LastNameBox" Height="30" Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Margin="4">
+                            <TextBlock Text="نام پدر" FontSize="12" Foreground="#2C3E50"/>
+                            <TextBox x:Name="FatherNameBox" Height="30" Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3" Margin="4">
+                            <TextBlock Text="شماره ملی" FontSize="12" Foreground="#2C3E50"/>
+                            <TextBox x:Name="NationalCodeBox" Height="30" Margin="0,4,0,0" FlowDirection="LeftToRight"/>
+                        </StackPanel>
+                        <Button Grid.Column="4" Content="جستجو" Width="100" Height="30" Margin="4,0,0,0" VerticalAlignment="Bottom" Background="#1F6FEB" Foreground="White" BorderThickness="0" FontSize="13" Cursor="Hand" Click="SearchButton_Click"/>
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" x:Name="GroupPanel" Margin="0,0,0,10" Visibility="Collapsed">
+                    <TextBlock Text="انتخاب نوع پرونده" FontSize="14" FontWeight="SemiBold" Foreground="#2C3E50" Margin="0,0,0,6"/>
+                    <ComboBox x:Name="FileTypeCombo" Height="30" Width="300" HorizontalAlignment="Right"/>
+                </StackPanel>
+
+                <Grid Grid.Row="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="ResultsGrid" AutoGenerateColumns="False" IsReadOnly="True" RowHeight="35" Background="White" BorderBrush="#D0D3DC" BorderThickness="1" SelectionMode="Extended" SelectionUnit="FullRow">
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn Header="انتخاب" Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="60"/>
+                            <DataGridTextColumn Header="نام" Binding="{Binding Coach.FirstName}" Width="*"/>
+                            <DataGridTextColumn Header="نام خانوادگی" Binding="{Binding Coach.LastName}" Width="*"/>
+                            <DataGridTextColumn Header="نام پدر" Binding="{Binding Coach.FatherName}" Width="*"/>
+                            <DataGridTextColumn Header="شماره ملی" Binding="{Binding Coach.NationalCode}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,0">
+                        <Button Content="خروجی" Height="36" Width="150" Background="#1F6FEB" Foreground="White" BorderThickness="0" FontSize="14" Cursor="Hand" Click="ExportButton_Click"/>
+                        <Button Content="انصراف" Height="36" Width="120" Margin="10,0,0,0" Background="#E8EBF2" Foreground="#2C3E50" BorderThickness="0" FontSize="14" Cursor="Hand" Click="CancelButton_Click"/>
+                        <TextBlock x:Name="ErrorText" Foreground="#C50F1F" FontSize="12" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

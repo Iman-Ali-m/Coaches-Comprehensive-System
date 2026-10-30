@@ -1,0 +1,233 @@
+<Window x:Class="CCS.App.CoachRegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        WindowStyle="None"
+        Title="ثبت نام مربی"
+        Height="700"
+        Width="1000"
+        WindowStartupLocation="CenterOwner"
+        FlowDirection="RightToLeft"
+        Background="#F5F6FA">
+    <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome CaptionHeight="0" ResizeBorderThickness="6" GlassFrameThickness="0" UseAeroCaptionButtons="False"/>
+    </shell:WindowChrome.WindowChrome>
+    <Border BorderBrush="#D0D3DC" BorderThickness="1" Background="#F5F6FA">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="#FFFFFF" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                    <Image Source="icon.png" Width="24" Height="24" Margin="0,0,8,0"/>
+                    <TextBlock Text="ثبت نام مربی" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#2C3E50"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Button Content="—" Width="40" Height="40" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="Minimize_Click"/>
+                    <Button x:Name="MaximizeBtn" Content="□" Width="40" Height="40" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="Maximize_Click"/>
+                    <Button Content="×" Width="40" Height="40" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="Close_Click"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" Margin="16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="اطلاعات فردی" FontSize="16" FontWeight="SemiBold" Foreground="#1F6FEB" Margin="0,0,0,10"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Grid.Column="0" Margin="4">
+                                <TextBlock Text="نام" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="FirstNameBox" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="1" Margin="4">
+                                <TextBlock Text="نام خانوادگی" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="LastNameBox" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="2" Margin="4">
+                                <TextBlock Text="نام پدر" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="FatherNameBox" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="0" Margin="4">
+                                <TextBlock Text="شماره ملی" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="NationalCodeBox" Height="30" Margin="0,4,0,0" FlowDirection="LeftToRight"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="1" Margin="4">
+                                <TextBlock Text="شماره شناسنامه" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="BirthCertificateNumberBox" Height="30" Margin="0,4,0,0" FlowDirection="LeftToRight"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="2" Margin="4">
+                                <TextBlock Text="کد پرسنلی" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="PersonnelCodeBox" Height="30" Margin="0,4,0,0" FlowDirection="LeftToRight"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Grid.Column="0" Margin="4">
+                                <TextBlock Text="تاریخ تولد" FontSize="12" Foreground="#2C3E50"/>
+                                <DatePicker x:Name="BirthDatePicker" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Grid.Column="1" Margin="4">
+                                <TextBlock Text="جنسیت" FontSize="12" Foreground="#2C3E50"/>
+                                <ComboBox x:Name="GenderCombo" Height="30" Margin="0,4,0,0">
+                                    <ComboBoxItem Content="مرد"/>
+                                    <ComboBoxItem Content="زن"/>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Grid.Column="2" Margin="4">
+                                <TextBlock Text="وضعیت تاهل" FontSize="12" Foreground="#2C3E50"/>
+                                <ComboBox x:Name="MaritalStatusCombo" Height="30" Margin="0,4,0,0">
+                                    <ComboBoxItem Content="مجرد"/>
+                                    <ComboBoxItem Content="متاهل"/>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Grid.Column="0" Margin="4">
+                                <TextBlock Text="تعداد فرزندان" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="ChildrenCountBox" Height="30" Margin="0,4,0,0" FlowDirection="LeftToRight"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Grid.Column="1" Margin="4">
+                                <TextBlock Text="رشته تحصیلی" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="FieldOfStudyBox" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Grid.Column="2" Margin="4">
+                                <TextBlock Text="تحصیلات" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="EducationBox" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                        <TextBlock Text="اطلاعات شغلی و خدمتی" FontSize="16" FontWeight="SemiBold" Foreground="#1F6FEB" Margin="0,20,0,10"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Grid.Column="0" Margin="4">
+                                <TextBlock Text="نوع عضویت" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="MembershipTypeBox" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="1" Margin="4">
+                                <TextBlock Text="تاریخ ورود به قرارداد یا رسمی" FontSize="12" Foreground="#2C3E50"/>
+                                <DatePicker x:Name="EntryDatePicker" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="2" Margin="4">
+                                <TextBlock Text="آخرین مسئولیت" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="LastPositionBox" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="0" Margin="4">
+                                <TextBlock Text="نوع پرونده" FontSize="12" Foreground="#2C3E50"/>
+                                <ComboBox x:Name="FileTypeCombo" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="1" Margin="4">
+                                <TextBlock Text="نام ناحیه" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="DistrictNameBox" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="2" Margin="4">
+                                <TextBlock Text="وضعیت خدمت سربازی" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="MilitaryStatusBox" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Grid.Column="0" Margin="4">
+                                <TextBlock Text="وضعیت جسمانی" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="PhysicalStatusBox" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Grid.Column="1" Margin="4">
+                                <TextBlock Text="وزن" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="WeightBox" Height="30" Margin="0,4,0,0" FlowDirection="LeftToRight"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Grid.Column="2" Margin="4">
+                                <TextBlock Text="قد" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="HeightBox" Height="30" Margin="0,4,0,0" FlowDirection="LeftToRight"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Grid.Column="0" Margin="4">
+                                <TextBlock Text="گروه خونی" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="BloodTypeBox" Height="30" Margin="0,4,0,0" FlowDirection="LeftToRight"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Grid.Column="1" Margin="4">
+                                <TextBlock Text="وضعیت ایثارگری" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="SacrificeStatusBox" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Grid.Column="2" Margin="4">
+                                <TextBlock Text="شغل" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="JobBox" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                        <TextBlock Text="اطلاعات تماس" FontSize="16" FontWeight="SemiBold" Foreground="#1F6FEB" Margin="0,20,0,10"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Grid.Column="0" Margin="4">
+                                <TextBlock Text="آدرس محل کار" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="WorkAddressBox" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="1" Margin="4">
+                                <TextBlock Text="آدرس منزل" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="HomeAddressBox" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="0" Margin="4">
+                                <TextBlock Text="شماره تماس ۱" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="Phone1Box" Height="30" Margin="0,4,0,0" FlowDirection="LeftToRight"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="1" Margin="4">
+                                <TextBlock Text="شماره تماس ۲" FontSize="12" Foreground="#2C3E50"/>
+                                <TextBox x:Name="Phone2Box" Height="30" Margin="0,4,0,0" FlowDirection="LeftToRight"/>
+                            </StackPanel>
+                        </Grid>
+                        <TextBlock Text="آپلود مدارک شخصی" FontSize="16" FontWeight="SemiBold" Foreground="#1F6FEB" Margin="0,20,0,10"/>
+                        <StackPanel Orientation="Horizontal" Margin="4,0,0,0">
+                            <Button x:Name="UploadNationalCardBtn" Content="کارت ملی پشت و رو" Height="30" Width="150" Margin="0,0,10,0" Click="UploadNationalCardBtn_Click"/>
+                            <TextBlock x:Name="NationalCardText" VerticalAlignment="Center" Foreground="#2C3E50"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="4,6,0,0">
+                            <Button x:Name="UploadBirthCertBtn" Content="تمام صفحات شناسنامه" Height="30" Width="150" Margin="0,0,10,0" Click="UploadBirthCertBtn_Click"/>
+                            <TextBlock x:Name="BirthCertText" VerticalAlignment="Center" Foreground="#2C3E50"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="4,6,0,0">
+                            <Button x:Name="UploadPhotoBtn" Content="عکس شخصی" Height="30" Width="150" Margin="0,0,10,0" Click="UploadPhotoBtn_Click"/>
+                            <TextBlock x:Name="PhotoText" VerticalAlignment="Center" Foreground="#2C3E50"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="4,6,0,0">
+                            <Button x:Name="UploadMilitaryBtn" Content="کارت پایان خدمت" Height="30" Width="150" Margin="0,0,10,0" Click="UploadMilitaryBtn_Click"/>
+                            <TextBlock x:Name="MilitaryText" VerticalAlignment="Center" Foreground="#2C3E50"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="4,6,0,0">
+                            <Button x:Name="UploadDegreeBtn" Content="آخرین مدرک تحصیلی" Height="30" Width="150" Margin="0,0,10,0" Click="UploadDegreeBtn_Click"/>
+                            <TextBlock x:Name="DegreeText" VerticalAlignment="Center" Foreground="#2C3E50"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,0">
+                    <Button x:Name="SaveButton" Content="ذخیره" Height="36" Width="120" Background="#1F6FEB" Foreground="White" BorderThickness="0" FontSize="14" Cursor="Hand" Click="SaveButton_Click"/>
+                    <Button x:Name="CancelButton" Content="انصراف" Height="36" Width="120" Margin="10,0,0,0" Background="#E8EBF2" Foreground="#2C3E50" BorderThickness="0" FontSize="14" Cursor="Hand" Click="CancelButton_Click"/>
+                    <TextBlock x:Name="ErrorText" Foreground="#C50F1F" FontSize="12" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
